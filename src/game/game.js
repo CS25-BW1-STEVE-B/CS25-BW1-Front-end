@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './game.scss'
 import { axiosWithAuth } from '../authentication/axiosAuth'
-import Rooms from '../rooms/rooms'
 import Player from '../player/player'
 import Directions from '../player/directions'
+import Map from '../map/map'
 
 const MainGame = () => {
     //all the rooms in our game
@@ -66,9 +66,9 @@ const MainGame = () => {
 
     return (
         <div className='gameCanvas'>
-            <Rooms rooms={rooms}/>
             <Player props={player}/>
             <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
+            <Map rooms={rooms} player={player}/>
         </div>
     )
 }

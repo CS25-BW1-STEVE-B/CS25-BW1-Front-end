@@ -26,112 +26,36 @@ const Directions = props => {
         let buttonClicked = e.target.dataset.name
         // checks which 'div' was clicked
         if(buttonClicked === 'Up'){
-            // iterates over the rooms..
-            props.rooms.forEach(room => {
-                // and checks of the player's location matches the room's name..
-                if(props.player.location === room.fields.title){
-                    // if it does, then grabs the PK of the next room
-                    let next_room = room.fields.n_to
-                    // and we iterate once more to check if the pk matches with any of the other room's pk..
-                    props.rooms.forEach(room => {
-                        if(next_room === room.pk){
-                            // if it does, we update player's current location on state
-                            props.setPlayer({
-                                ...props.player,
-                                location: room.fields.title,
-                            })
-                        }
-                    })
-                }
-            })
             // update's state according to what has been clicked
             setDirections({...directions, direction: 'n'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Down'){
-            // iterates over the rooms..
-            props.rooms.forEach(room => {
-                // and checks of the player's location matches the room's name..
-                if(props.player.location === room.fields.title){
-                    // if it does, then grabs the PK of the next room
-                    let next_room = room.fields.s_to
-                    // and we iterate once more to check if the pk matches with any of the other room's pk..
-                    props.rooms.forEach(room => {
-                        if(next_room === room.pk){
-                            // if it does, we update player's current location on state
-                            props.setPlayer({
-                                ...props.player,
-                                location: room.fields.title,
-                            })
-                        }
-                    })
-                }
-            })
             // update's state according to what has been clicked
             setDirections({...directions, direction: 's'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Left'){
-            // iterates over the rooms..
-            props.rooms.forEach(room => {
-                // and checks of the player's location matches the room's name..
-                if(props.player.location === room.fields.title){
-                    // if it does, then grabs the PK of the next room
-                    let next_room = room.fields.w_to
-                    // and we iterate once more to check if the pk matches with any of the other room's pk..
-                    props.rooms.forEach(room => {
-                        if(next_room === room.pk){
-                            // if it does, we update player's current location on state
-                            props.setPlayer({
-                                ...props.player,
-                                location: room.fields.title,
-                            })
-                        } else {
-
-                        }
-                    })
-                }
-            })
             // update's state according to what has been clicked
             setDirections({...directions, direction: 'w'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Right'){
-            // iterates over the rooms..
-            props.rooms.forEach(room => {
-                // and checks of the player's location matches the room's name..
-                if(props.player.location === room.fields.title){
-                    // if it does, then grabs the PK of the next room
-                    let next_room = room.fields.w_to
-                    // and we iterate once more to check if the pk matches with any of the other room's pk..
-                    props.rooms.forEach(room => {
-                        if(next_room === room.pk){
-                            // if it does, we update player's current location on state
-                            props.setPlayer({
-                                ...props.player,
-                                location: room.fields.title,
-                            })
-                        }
-                    })
-                }
-            })
             // update's state according to what has been clicked
             setDirections({...directions, direction: 'e'})
         }
     }
 
-
-
     return (
         <div className='allButtons' onClick={directionHandler}>
-            <div className='upButton'>
+            {/* <div className='upButton'>
                 <button className='buttons' data-name='Up'>Up</button>
             </div>
             <div className='buttonsbottom'>
                 <button className='buttons' data-name='Left'>Left</button>
                 <button className='buttons' data-name='Down'>Down</button>
                 <button className='buttons' data-name='Right'>Right</button>
-            </div>
+            </div> */}
         </div>
     )
 }

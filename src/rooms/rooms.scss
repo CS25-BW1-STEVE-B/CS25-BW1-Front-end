@@ -2,19 +2,41 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 3rem;
+    height: 3rem;
     border: 2px solid black;
 }
 
+.firstSetOfRooms{
+    width: 50px;
+    height: 85px;
+    border: 1px solid green;
+}
+.secondSetOfRooms{
+    width: 50px;
+    height: 64px;
+    border: 1px solid green;
+}
+
 .roomName{
-    font-size: medium;
+    font-size: xx-small;
     text-align: center;
 }
 
-#map{
-    width: 90vw;
-    height: 90vh;
-    display: flex;
-    justify-content: space-evenly;
+.upDownPath{
+    width: 10px;
+    height: 20px;
+    background-color: blueviolet;
 }
+.leftRightPath{
+    width: 20px;
+    height: 10px;
+    background-color: blueviolet;
+}
+
+// #map{
+//     width: 90vw;
+//     height: 90vh;
+//     display: flex;
+//     justify-content: space-evenly;
+// }
