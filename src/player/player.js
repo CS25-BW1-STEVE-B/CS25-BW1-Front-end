@@ -9,7 +9,7 @@ const Player = props => {
                 <> 
                     <h5>Player's username: {props.props.name}</h5>
                     <h5>Player's location: {props.props.title}</h5>
-                <p>There is {props.props.players.length} online</p>
+                <p>There is {props.props.players.length} in this room.</p>
                 </>
             : null}
         </div>

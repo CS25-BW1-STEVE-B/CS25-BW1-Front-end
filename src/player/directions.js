@@ -5,16 +5,21 @@ import { axiosWithAuth } from '../authentication/axiosAuth'
 const Directions = props => {
     
     const [directions, setDirections] = useState({
-        directions: '',
-        error: '',
+        direction: ""
     })
 
     console.log('directions state', directions)
     
-    // useEffect(() => {
-        //     axiosWithAuth()
-        //     .post('https://lambda-mud-test.herokuapp.com/api/adv/move')
-        // })
+    //This handles wherever the player moves, sends a post request to the server indicating where the player has moved,
+    useEffect(() => {
+            axiosWithAuth()
+            .post('https://lambda-mud-test.herokuapp.com/api/adv/move', directions)
+            .then(res => {
+                console.log('from axios post request', res)
+                props.setPlayer({...props.player, location: res.data.title, ...res.data})
+            })
+            .catch(err => console.log(err.response))
+        }, [directions])
         
     const directionHandler = (e) => {
         //variable that holds the value on the 'div' clicked
@@ -39,6 +44,8 @@ const Directions = props => {
                     })
                 }
             })
+            // update's state according to what has been clicked
+            setDirections({...directions, direction: 'n'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Down'){
@@ -60,6 +67,8 @@ const Directions = props => {
                     })
                 }
             })
+            // update's state according to what has been clicked
+            setDirections({...directions, direction: 's'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Left'){
@@ -83,6 +92,8 @@ const Directions = props => {
                     })
                 }
             })
+            // update's state according to what has been clicked
+            setDirections({...directions, direction: 'w'})
         }
         // checks which 'div' was clicked
         if(buttonClicked === 'Right'){
@@ -104,9 +115,9 @@ const Directions = props => {
                     })
                 }
             })
+            // update's state according to what has been clicked
+            setDirections({...directions, direction: 'e'})
         }
-        // update's state according to what has been clicked
-        setDirections(buttonClicked)
     }
 
 

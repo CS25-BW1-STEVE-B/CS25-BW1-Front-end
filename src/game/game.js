@@ -12,7 +12,6 @@ const MainGame = () => {
 
     const [player, setPlayer] = useState({
         name: '',
-        location:'',
         inventory:[]
     })
     console.log('player', player)
