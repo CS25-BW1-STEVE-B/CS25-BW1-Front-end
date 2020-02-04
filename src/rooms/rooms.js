@@ -2,51 +2,57 @@ import React, { useState } from 'react'
 import './rooms.scss'
 
 const Rooms = props => {
-    //rooms shortcut
-    const rooms = props.rooms
+    console.log('from rooms', props.rooms)
+    const rooms = []
+    if(props.rooms !== undefined){
+        props.rooms.forEach(room => {
+            rooms.push(room)
+        })
+    }
 
-    console.log('ROOMS FROM ROOMS', rooms)
-    
-    // avoids error of props being undefined before loaded in the DOM
-    const loadRooms = () => {
-        if(rooms !== undefined){
-            rooms.forEach(room => room)
+    const roomLayout = () => {
+        if(props.room !== undefined){
+            // props.room.forEach(room => {
+                if (props.room.pk === 1){
+                    if(props.room.fields.n_to === props.room.pk){
+                    // console.log('FROM room LAYOUT FUNCTION', props.room)
+                        let room = document.getElementById(`${props.room.pk}`)
+                        if(room !== null){
+                            console.log('ROOM LAYOUT ROOM', room)
+                            room.style.backgroundColor = 'pink'
+                            room.style.position = 'absolute'
+                            room.style.top = '140px'
+                            room.style.left = '230px'
+                        }
+                }
+                    console.log('DID WE FOUND IT???', props.room.fields.n_to)
+                    console.log('WHAT IS THIS??', props.room.pk)
+                        // let room = document.getElementById(`${props.room.pk}`)
+                        // room.style.backgroundColor = 'blue'
+                        // room.style.position = 'absolute'
+                        // room.style.top = '140px'
+                        // room.style.left = '230px'   
+                }
+                        //     // console.log('ROOM LAYOUT ROOM NORTH TO', props.room.fields.n_to)
+
+            // })
         }
     }
-    //Takes care of loading the rooms first
-    loadRooms()
 
+    roomLayout()
+    
     return (
         <>
-            {rooms !== undefined ?
-                rooms.map(room =>
-                    <>
-                        {room.fields.n_to !== 0 || room.fields.s_to !== 0 ?
-                            <div className='firstSetOfRooms'>
-                                <div className='upDownPath'></div>
-                                <div className='room'></div>
-                                <div className='upDownPath'></div>
-                            </div>
-                        : null}
-                        {room.fields.w_to !== 0 || room.fields.e_to !== 0 ?
-                            <div className='secondSetOfRooms'>
-                                <div className='leftRightPath'></div>
-                                <div className='room'></div>
-                                <div className='leftRightPath'></div>
-                            </div>
-                        : null}
-                    </>
-                )
-            : null}
-            {/* <div className='upDownPath'></div> */}
-            {/* {rooms !== undefined ? rooms.map(room => 
-                (
-                    <div className='room' key={room.pk}>
+
+            {rooms.map(room => {
+                return(
+                    <div id={`${room.pk}`} style={{border: '1px solid black', width: '3rem', height: '3rem'}}>
                         <h2 className='roomName'>{room.fields.title}</h2>
-                        {/* <p>{room.fields.description}</p> */}
-                    {/* </div>
+                        {/* <p>{room.fields.description}</p>*/}
+                    </div>
                 )
-                ) : null} */}
+            })}
+            
         </>
     )
 }

@@ -18,10 +18,8 @@ const MainGame = () => {
 
     //This function is what set's the initial location of the player on state
     const currentLocationTracker = () =>{
-        let room_key
         let room_name;
         rooms.forEach(room => {
-            room_key = room.pk
             room_name = room.fields.title
             
             if(player.location === room_name){

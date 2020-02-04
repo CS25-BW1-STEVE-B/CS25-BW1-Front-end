@@ -8,12 +8,17 @@
 }
 
 .firstSetOfRooms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 50px;
-    height: 85px;
+    height: 84px;
     border: 1px solid green;
 }
 .secondSetOfRooms{
-    width: 50px;
+    display: flex;
+    align-items: center;
+    width: 70px;
     height: 64px;
     border: 1px solid green;
 }
@@ -33,10 +38,3 @@
     height: 10px;
     background-color: blueviolet;
 }
-
-// #map{
-//     width: 90vw;
-//     height: 90vh;
-//     display: flex;
-//     justify-content: space-evenly;
-// }
