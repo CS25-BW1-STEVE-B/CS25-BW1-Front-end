@@ -8,7 +8,7 @@ const GameMap = props => {
 
     return (
         <div className='gameMap'>
-            <div className='rooms'>
+            <div className='grid'>
                 <Rooms rooms={props.rooms}/>
             </div>
         </div>

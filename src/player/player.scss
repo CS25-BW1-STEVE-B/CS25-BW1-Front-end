@@ -1,0 +1,40 @@
+
+.playerUsername{
+    display: flex;
+    justify-content: space-evenly;
+    width: 120px;
+    font-size: 10px;
+    margin: 0px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.playerUserDescription{
+    font-weight: normal;
+}
+
+.playerLocation{
+    display: flex;
+    justify-content: space-evenly;
+    width: 160px;
+    margin: 0;
+    font-size: 10px;
+    font-weight: bold;
+    
+}
+.playerLocationDescription{
+    font-weight: normal;
+}
+
+.onlinePlayers{
+    display: flex;
+    justify-content: space-evenly;
+    width: 150px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.onlinePlayersDescription{
+    font-weight: normal;
+
+}

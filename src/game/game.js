@@ -64,9 +64,9 @@ const MainGame = () => {
 
     return (
         <div className='gameCanvas'>
+            <Map rooms={rooms} player={player}/>
             <Player props={player} rooms={rooms}/>
             <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
-            <Map rooms={rooms} player={player}/>
         </div>
     )
 }

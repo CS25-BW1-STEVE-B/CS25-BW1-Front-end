@@ -1,4 +1,5 @@
 import React from 'react'
+import './player.scss'
 
 const Player = props => {
     
@@ -20,7 +21,6 @@ const Player = props => {
                     current_room.style.backgroundColor = 'white'
                 }
             }
-        
         })
     }
 
@@ -34,13 +34,13 @@ const Player = props => {
 
     return (
         <div className='player'>
-            {/* {props.props.players !== undefined ?
+            {props.props.players !== undefined ?
                 <> 
-                    <h5>Player's username: {props.props.name}</h5>
-                    <h5>Player's location: {props.props.location}</h5>
-                <p>There is {props.props.players.length} players in this room.</p>
+                    {/* <p className='playerUsername'><p className='playerUserDescription'>Player's username:</p>{props.props.name}</p>
+                    <p className='playerLocation'> <p className='playerLocationDescription'>Player's location:</p>{props.props.location}</p>
+                    <p className='onlinePlayers'><p className='onlinePlayersDescription'>There is</p>{props.props.players.length}<p className='onlinePlayersDescription'>players in this room.</p></p> */}
                 </>
-            : null} */}
+            : null}
         </div>
     )
 }
