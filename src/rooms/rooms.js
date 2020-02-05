@@ -10,36 +10,36 @@ const Rooms = props => {
         })
     }
 
-    const roomLayout = () => {
-        if(props.room !== undefined){
-            // props.room.forEach(room => {
-                if (props.room.pk === 1){
-                    if(props.room.fields.n_to === props.room.pk){
-                    // console.log('FROM room LAYOUT FUNCTION', props.room)
-                        let room = document.getElementById(`${props.room.pk}`)
-                        if(room !== null){
-                            console.log('ROOM LAYOUT ROOM', room)
-                            room.style.backgroundColor = 'pink'
-                            room.style.position = 'absolute'
-                            room.style.top = '140px'
-                            room.style.left = '230px'
-                        }
-                }
-                    console.log('DID WE FOUND IT???', props.room.fields.n_to)
-                    console.log('WHAT IS THIS??', props.room.pk)
-                        // let room = document.getElementById(`${props.room.pk}`)
-                        // room.style.backgroundColor = 'blue'
-                        // room.style.position = 'absolute'
-                        // room.style.top = '140px'
-                        // room.style.left = '230px'   
-                }
-                        //     // console.log('ROOM LAYOUT ROOM NORTH TO', props.room.fields.n_to)
+    // const roomLayout = () => {
+    //     if(props.room !== undefined){
+    //         // props.room.forEach(room => {
+    //             if (props.room.pk === 1){
+    //                 if(props.room.fields.n_to === props.room.pk){
+    //                 // console.log('FROM room LAYOUT FUNCTION', props.room)
+    //                     let room = document.getElementById(`${props.room.pk}`)
+    //                     if(room !== null){
+    //                         console.log('ROOM LAYOUT ROOM', room)
+    //                         room.style.backgroundColor = 'pink'
+    //                         room.style.position = 'absolute'
+    //                         room.style.top = '140px'
+    //                         room.style.left = '230px'
+    //                     }
+    //             }
+    //                 console.log('DID WE FOUND IT???', props.room.fields.n_to)
+    //                 console.log('WHAT IS THIS??', props.room.pk)
+    //                     // let room = document.getElementById(`${props.room.pk}`)
+    //                     // room.style.backgroundColor = 'blue'
+    //                     // room.style.position = 'absolute'
+    //                     // room.style.top = '140px'
+    //                     // room.style.left = '230px'   
+    //             }
+    //                     //     // console.log('ROOM LAYOUT ROOM NORTH TO', props.room.fields.n_to)
 
-            // })
-        }
-    }
+    //         // })
+    //     }
+    // }
 
-    roomLayout()
+    // roomLayout()
     
     return (
         <>

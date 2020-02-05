@@ -14,7 +14,7 @@ const MainGame = () => {
         name: '',
         inventory:[]
     })
-    console.log('player', player)
+    // console.log('player', player)
 
     //This function is what set's the initial location of the player on state
     const currentLocationTracker = () =>{
@@ -64,7 +64,7 @@ const MainGame = () => {
 
     return (
         <div className='gameCanvas'>
-            <Player props={player}/>
+            <Player props={player} rooms={rooms}/>
             <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
             <Map rooms={rooms} player={player}/>
         </div>

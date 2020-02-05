@@ -48,14 +48,14 @@ const Directions = props => {
 
     return (
         <div className='allButtons' onClick={directionHandler}>
-            {/* <div className='upButton'>
+            <div className='upButton'>
                 <button className='buttons' data-name='Up'>Up</button>
             </div>
             <div className='buttonsbottom'>
                 <button className='buttons' data-name='Left'>Left</button>
                 <button className='buttons' data-name='Down'>Down</button>
                 <button className='buttons' data-name='Right'>Right</button>
-            </div> */}
+            </div>
         </div>
     )
 }
