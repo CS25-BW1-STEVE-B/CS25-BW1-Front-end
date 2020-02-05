@@ -1,48 +1,16 @@
-.room{
+.rooms{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 3rem;
     height: 3rem;
     border: 2px solid black;
+    font-size: 8px;
 }
 
-.firstSetOfRooms{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50px;
-    height: 84px;
-    border: 1px solid green;
-}
-.secondSetOfRooms{
-    display: flex;
-    align-items: center;
-    width: 70px;
-    height: 64px;
-    border: 1px solid green;
-}
-
-.roomName{
-    font-size: xx-small;
-    text-align: center;
-}
-
-.upDownPath{
-    width: 10px;
-    height: 20px;
-    background-color: blueviolet;
-}
-.leftRightPath{
-    width: 20px;
-    height: 10px;
-    background-color: blueviolet;
-}
-
-.testRooms{
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-    margin: 0;
-    padding: 0;
+.invisibleRooms{
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid rgb(15, 129, 223);
+    background-color: transparent !important;
 }
