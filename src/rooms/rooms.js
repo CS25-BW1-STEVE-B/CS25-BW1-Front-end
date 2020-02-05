@@ -9,29 +9,35 @@ const Rooms = props => {
             rooms.push(room)
         })
     }
-    // const test_rooms = Array(119).fill({x: 0, y: 0})
-    const test_rooms = Array(20).fill([])
-    // [{x:0,y:0}]
-    // test_rooms[0][0].x = 'marco'
-    // test_rooms[0][0].y = 'polo'
 
-    const the2DArray = (arr) => {
-        for(let i = 0; i < arr.length; i++){
-            arr[i] = i
-            for(let j = 0; j < arr.length; j++){
-                arr[i][j] = j
+
+    // dummy rooms to create our 2d array matrix
+    let test_rooms;
+
+    // function that creates our 2d array
+    const the2DArray = () => {
+        // variable that holds our primary array
+        let sub_arr = []
+        // for loop used to come up with numbers for position x in our sub arrays
+        for(let i = 0; i < 5; i++){
+            // for loop used to come up with numbers for position y in our sub arrays
+            for(let j = 0; j < 5; j++){
+                // we push our sub array created to our primary array var
+                sub_arr.push({x: i, y: j})
             }
         }
-        return arr
+        // we assign our dummy variable to be our primary array
+        return test_rooms = sub_arr
     }
-    the2DArray(test_rooms)
-    console.log('TEST ROOMS', test_rooms)
+    the2DArray()
+
+    console.log('2D ARRAY', test_rooms)
     
     return (
         <>
-        {test_rooms.map(room => {
-            return <div className='testRooms'></div>
-        })}
+            {test_rooms.map(room => {
+                return <div className='testRooms' id={room}></div>
+            })}
 
             {/* {rooms.map(room => {
                 return(
