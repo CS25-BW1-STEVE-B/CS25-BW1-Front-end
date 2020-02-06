@@ -3,14 +3,14 @@ import './player.scss'
 
 const Player = props => {
     
-    console.log('player props', props)
+    // console.log('player props', props)
     // checks the player's current location and, indicates it by changing the rooms background color,
     // as the player moves around
     if(props.rooms !== undefined){
         props.rooms.forEach(room => {
             if(props.props.location === room.fields.title){
                 let current_room = document.getElementById(room.pk)
-                console.log('CURRENT ROOM', current_room)
+                // console.log('CURRENT ROOM', current_room)
                 if(current_room !== null){
                     current_room.style.backgroundColor = '#ff6b6b'
                 }

@@ -4,12 +4,12 @@ import './map.scss'
 
 const GameMap = props => {
 
-    console.log('MAP ROOMS', props.rooms)
+    // console.log('MAP ROOMS', props.rooms)
 
     return (
         <div className='gameMap'>
             <div className='grid'>
-                <Rooms rooms={props.rooms}/>
+                <Rooms rooms={props.rooms} setRooms={props.setRooms}/>
             </div>
         </div>
     )

@@ -23,7 +23,7 @@ const MainGame = () => {
             room_name = room.fields.title
             
             if(player.location === room_name){
-                console.log('matching room', room.fields.n_to)
+                // console.log('matching room', room.fields.n_to)
                 setPlayer({
                     ...player,
                     location: room_name
@@ -64,7 +64,7 @@ const MainGame = () => {
 
     return (
         <div className='gameCanvas'>
-            <Map rooms={rooms} player={player}/>
+            <Map rooms={rooms} setRooms={setRooms} player={player}/>
             <Player props={player} rooms={rooms}/>
             <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
         </div>
