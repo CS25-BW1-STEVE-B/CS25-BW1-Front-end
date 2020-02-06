@@ -8,6 +8,7 @@ const Rooms = props => {
         {
             title: "Outside Cave Entrance",
             description: "North of you, the cave mount beckons",
+            pk: 1,
             n_to: 2,
             s_to: 0,
             e_to: 0,
@@ -20,6 +21,7 @@ const Rooms = props => {
         {
             title: "Foyer",
             description: "Dim light filters in from the south. Dusty↵passages run north and east.",
+            pk: 2,
             n_to: 3,
             s_to: 1,
             e_to: 4,
@@ -47,7 +49,7 @@ const Rooms = props => {
             // for loop used to come up with numbers for position y in our sub arrays
             for(let j = 0; j <= 9; j++){
                 // we push our sub array created to our primary array var
-                sub_arr.push({x: i, y: j})
+                sub_arr.push({x: j, y: i})
             }
         }
         // we assign our dummy variable to be our primary array
@@ -55,43 +57,49 @@ const Rooms = props => {
     }
     the2DArray()
 
+    // console.log('INITIAL 2D ARRAY', array2DRooms)
+
 
 
     const roomPlacer = (array2d, rooms) => {
-        let first_room_coords = rooms[0].coords
+        let first_room = rooms[0]
         let array2d_coords = array2d[54]
+        let new_rooms = []
         let divs = []
 
-        first_room_coords.x = array2d_coords.x
-        first_room_coords.y = array2d_coords.y
+        first_room.coords.x = array2d_coords.x
+        first_room.coords.y = array2d_coords.y
 
         for(let i = 0; i < array2d.length; i++){
-            if(array2d[i].x === first_room_coords.x && array2d[i].y === first_room_coords.y){
-                let new_room = rooms[i]
-                array2d[i] = new_room
-            let room = <div className='visibleRooms' x={first_room_coords.x} y={first_room_coords.y}>{rooms[0].title}</div>
-                divs.push(room)
-            } else {
-                // we would need another iterator to check if ...
-                console.log('THE ROOM', rooms[i])
-                rooms.forEach(room => {
-                // the room in the current index north to is equal to any primary key of the other rooms
-                if(rooms.n_to === room.pk){
-                    console.log('OUTSIDE', room)
-                    // console.log('FOYER', room)
-                    // we need to make a variable that holds the coords of the current room with x - 1 and set those coords to the room north to
+            if(array2d[i].x === first_room.coords.x && array2d[i].y === first_room.coords.y){
+                console.log('rooms[0]', rooms[0])
+                array2d[i] = rooms[i]
+            // let room = <div className='visibleRooms' x={first_room_coords.x} y={first_room_coords.y}>{rooms[0].title}</div>
+                new_rooms.push(first_room)
+                for(let z = 0; z < rooms.length; z++){
+                    for(let j = 0; j < rooms.length; j++){
+                        // the room in the current index north to is equal to any primary key of the other rooms
+                        if(rooms[z].n_to === rooms[j].pk){
+                            rooms[j].coords.x = rooms[z].coords.x - 1
+                            rooms[j].coords.y = rooms[z].coords.y
+                            let next_room = rooms[j]
+                            console.log('WHATS NEXT ROOM', next_room)
+                            // array2d[i] = rooms[j]
+                            // // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[0].title}</div>
+                            new_rooms.push(next_room)
+                        } 
+                    }
                 }
-
-                })
-
-
-
-                let room = <div className='invisibleRooms' x={array2d[i].x} y={array2d[i].y}></div>
-                divs.push(room)
             }
+   
+            // else {    
+            // }
+            // we would need another iterator to check if ...
+            // console.log('PREVIOUS ROOM', rooms[i])
 
         }
         console.log('DIVS', divs)
+        console.log('NEW ROOMS', new_rooms)
         return divs
     }
 
