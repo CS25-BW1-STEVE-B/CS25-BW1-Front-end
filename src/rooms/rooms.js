@@ -121,30 +121,22 @@ const Rooms = props => {
                         if(rooms[z].n_to === rooms[j].pk){
                             rooms[j].coords.x = rooms[z].coords.x
                             rooms[j].coords.y = rooms[z].coords.y - 1
-                            // array2d[i] = rooms[j]
-                            // // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[0].title}</div>
                             new_rooms.push(rooms[j])
                         } 
                         // the room in the current index north to is equal to any primary key of the other rooms
                         else if(rooms[z].w_to === rooms[j].pk){
                             rooms[j].coords.x = rooms[z].coords.x - 1
                             rooms[j].coords.y = rooms[z].coords.y
-                            // array2d[i] = rooms[j]
-                            // // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[0].title}</div>
                             new_rooms.push(rooms[j])
                         } 
                         else if(rooms[z].s_to === rooms[j].pk){
                             rooms[j].coords.x = rooms[z].coords.x
                             rooms[j].coords.y = rooms[z].coords.y + 1
-                            // array2d[i] = rooms[j]
-                            // // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[0].title}</div>
                             new_rooms.push(rooms[j])
                         } 
                         else if(rooms[z].e_to === rooms[j].pk){
                             rooms[j].coords.x = rooms[z].coords.x + 1
                             rooms[j].coords.y = rooms[z].coords.y
-                            // array2d[i] = rooms[j]
-                            // // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[0].title}</div>
                             new_rooms.push(rooms[j])
                         } 
                     }
@@ -152,29 +144,42 @@ const Rooms = props => {
             }
         }
 
+        // This for loop makes sure there is no repetitive
         let unique_rooms = []
         for(let i = 0; i < new_rooms.length; i++){
             if(unique_rooms.indexOf(new_rooms[i]) === -1){
                 unique_rooms.push(new_rooms[i])
             }
         }
-        console.log('THE UNIQUE ROOMS', unique_rooms)
-
+        for(let i = 0; i < array2d.length; i++){
+            for(let j = 0; j < unique_rooms.length; j++){
+                console.log('array2d[i]', array2d[i])
+                console.log('unique_rooms[i]', unique_rooms[j].coords)
+                    try{
+                        if(array2d[i].x === unique_rooms[j].coords.x){
+                            console.log('HERE!')
+                            for(let y = 0; y < array2d.length; y++){
+                                for(let z = 0; z < unique_rooms.length; z++){
+                                    if(array2d[i].y === unique_rooms[z].coords.y){
+                                        console.log('WE HAVE A MATCH!!!!!')
+                                }
+                            }
+                        }
+                    }
+                //             // let new_room = <div className='visibleRooms' x={rooms[j].coords.x} y={rooms[j].coords.y}>{rooms[j].title}</div>
+                        
+                    } catch(err) {
+                        console.log('Not there??')
+                    } 
+            }
+        }
+        
+            
+            // console.log('THE UNIQUE ROOMS', unique_rooms)
         console.log('DIVS', divs)
         // console.log('NEW ROOMS', new_rooms)
-        // return divs
+        return divs
     }
-
-    // const findDuplicateRooms = (arr) => {
-    //     let unique_rooms = []
-    //     for(let i = 0; i < arr.length; i++){
-    //         if(unique_rooms.indexOf(arr[i]) === -1){
-    //             unique_rooms.push(arr[i])
-    //         }
-    //     }
-    //     console.log('THE UNIQUE ROOMS', unique_rooms)
-    // }
-    // findDuplicateRooms(new_rooms)
 
     console.log('2D ARRAY', array2DRooms)
     console.log('TEST ROOMS', rooms)
@@ -182,17 +187,16 @@ const Rooms = props => {
     
     return (
         <>
-        {roomPlacer(array2DRooms, rooms)}
             {/* {props.rooms !== undefined ? 
                 props.rooms.map(room => {
                     return <div className='rooms' id={room.pk}>{room.fields.title}</div>
                 })
             : null} */}
-            {/* {array2DRooms.map(room => {
-                console.log('GRID', room)
+            {array2DRooms.map(room => {
+                // console.log('GRID', room)
                 return <div className='invisibleRooms' x={room.x} y={room.y}></div>
-            })} */}
-            
+            })}
+            {roomPlacer(array2DRooms, rooms)}
         </>
     )
 }
