@@ -150,17 +150,31 @@ const Rooms = props => {
                     }
                 }
             }
-   
-            // else {    
-            // }
-            // we would need another iterator to check if ...
-            // console.log('PREVIOUS ROOM', rooms[i])
-
         }
+
+        let unique_rooms = []
+        for(let i = 0; i < new_rooms.length; i++){
+            if(unique_rooms.indexOf(new_rooms[i]) === -1){
+                unique_rooms.push(new_rooms[i])
+            }
+        }
+        console.log('THE UNIQUE ROOMS', unique_rooms)
+
         console.log('DIVS', divs)
-        console.log('NEW ROOMS', new_rooms)
-        return divs
+        // console.log('NEW ROOMS', new_rooms)
+        // return divs
     }
+
+    // const findDuplicateRooms = (arr) => {
+    //     let unique_rooms = []
+    //     for(let i = 0; i < arr.length; i++){
+    //         if(unique_rooms.indexOf(arr[i]) === -1){
+    //             unique_rooms.push(arr[i])
+    //         }
+    //     }
+    //     console.log('THE UNIQUE ROOMS', unique_rooms)
+    // }
+    // findDuplicateRooms(new_rooms)
 
     console.log('2D ARRAY', array2DRooms)
     console.log('TEST ROOMS', rooms)
