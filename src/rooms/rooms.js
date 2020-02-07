@@ -4,6 +4,7 @@ import './rooms.scss'
 const Rooms = props => {
     // console.log('from rooms', props.rooms)
     let array2DRooms = []
+    let divs = []
     let rooms = [
         { 
             title: "Outside Cave Entrance",
@@ -89,6 +90,9 @@ const Rooms = props => {
             for(let j = 0; j <= 9; j++){
                 // we push our sub array created to our primary array var
                 sub_arr.push({x: j, y: i})
+
+                let new_room = <div className='invisibleRooms' x={i} y={j}></div>
+                divs.push(new_room)
             }
         }
         // we assign our dummy variable to be our primary array
@@ -104,50 +108,50 @@ const Rooms = props => {
         let first_room = rooms[0]
         let array2d_coords = array2d[54]
         let new_rooms = []
-        let divs = []
 
         first_room.coords.x = array2d_coords.x
         first_room.coords.y = array2d_coords.y
 
-        for(let i = 0; i < array2d.length; i++){
-            if(array2d[i].x === first_room.coords.x && array2d[i].y === first_room.coords.y){
-                console.log('array2d[i]', array2d[i])
-                console.log('rooms[i]', first_room)
-                console.log('WHAT IS I', i)
-                let room = <div className='visibleRooms' x={first_room.coords.x} y={first_room.coords.y}>{first_room.title}</div>
-                divs.push(room)
+        // for(let i = 0; i < array2d.length; i++){
+        //     if(array2d[i].x === first_room.coords.x && array2d[i].y === first_room.coords.y){
+                // console.log('array2d[i]', array2d[i])
+                // console.log('rooms[i]', first_room)
+                // console.log('WHAT IS I', i)
+                // let room = <div className='visibleRooms' x={first_room.coords.x} y={first_room.coords.y}>{first_room.title}</div>
                 // divs.push(room)
-                // for(let z = 0; z < rooms.length; z++){
-                //     for(let j = 0; j < rooms.length; j++){
-                //         // the room in the current index north to is equal to any primary key of the other rooms
-                //         if(rooms[z].n_to === rooms[j].pk){
-                //             rooms[j].coords.x = rooms[z].coords.x
-                //             rooms[j].coords.y = rooms[z].coords.y - 1
-                //             new_rooms.push(rooms[j])
-                //         } 
-                //         // the room in the current index north to is equal to any primary key of the other rooms
-                //         else if(rooms[z].w_to === rooms[j].pk){
-                //             rooms[j].coords.x = rooms[z].coords.x - 1
-                //             rooms[j].coords.y = rooms[z].coords.y
-                //             new_rooms.push(rooms[j])
-                //         } 
-                //         else if(rooms[z].s_to === rooms[j].pk){
-                //             rooms[j].coords.x = rooms[z].coords.x
-                //             rooms[j].coords.y = rooms[z].coords.y + 1
-                //             new_rooms.push(rooms[j])
-                //         } 
-                //         else if(rooms[z].e_to === rooms[j].pk){
-                //             rooms[j].coords.x = rooms[z].coords.x + 1
-                //             rooms[j].coords.y = rooms[z].coords.y
-                //             new_rooms.push(rooms[j])
-                //         } 
-                //     }
-                // }
-            } else {
-                let room = <div className='invisibleRooms' x={first_room.coords.x} y={first_room.coords.y}></div>
-                divs.push(room)
+        for(let z = 0; z < rooms.length; z++){
+            for(let j = 0; j < rooms.length; j++){
+                // the room in the current index north to is equal to any primary key of the other rooms
+                if(rooms[z].n_to === rooms[j].pk){
+                    rooms[j].coords.x = rooms[z].coords.x
+                    rooms[j].coords.y = rooms[z].coords.y - 1
+                    new_rooms.push(rooms[j])
+                } 
+                // the room in the current index north to is equal to any primary key of the other rooms
+                else if(rooms[z].w_to === rooms[j].pk){
+                    rooms[j].coords.x = rooms[z].coords.x - 1
+                    rooms[j].coords.y = rooms[z].coords.y
+                    new_rooms.push(rooms[j])
+                } 
+                else if(rooms[z].s_to === rooms[j].pk){
+                    rooms[j].coords.x = rooms[z].coords.x
+                    rooms[j].coords.y = rooms[z].coords.y + 1
+                    new_rooms.push(rooms[j])
+                } 
+                else if(rooms[z].e_to === rooms[j].pk){
+                    rooms[j].coords.x = rooms[z].coords.x + 1
+                    rooms[j].coords.y = rooms[z].coords.y
+                    new_rooms.push(rooms[j])
+                } 
             }
         }
+        //     } else {
+        //         let room = <div className='invisibleRooms' x={first_room.coords.x} y={first_room.coords.y}></div>
+        //         // divs.push(room)
+        //     }
+        // }
+
+        console.log('NEW ROOMS', new_rooms)
 
         // This for loop makes sure there is no repetitive
         let unique_rooms = []
@@ -156,31 +160,33 @@ const Rooms = props => {
                 unique_rooms.push(new_rooms[i])
             }
         }
-        // for(let i = 0; i < array2d.length; i++){
-        //     for(let j = 0; j < unique_rooms.length; j++){
-        //         // console.log('array2d[i]', array2d[i])
-        //         try{
-        //             if(array2d[i].x === unique_rooms[j].coords.x){
-        //                 // console.log('HERE!')
-        //                 if(array2d[i].y === unique_rooms[j].coords.y){
-        //                     console.log('WE HAVE A MATCH!!!!!')
-        //                     console.log('unique_rooms that matched', unique_rooms[j])
-        //                         // array2d[i] = unique_rooms[i]
-        //                         // let new_room = <div className='visibleRooms' x={unique_rooms[j].coords.x} y={unique_rooms[j].coords.y}>{rooms[j].title}</div>
-        //                         // divs.push(new_room)
-        //                     }
-        //                 }
+        console.log('THE UNIQUE ROOMS', unique_rooms)
 
-        //             } catch(err) {
-        //                 console.log('Not there??')
-        //             } 
-        //     }
-        // }
+    
+    
+
+        for(let i = 0; i < divs.length; i++){
+            for(let j = 0; j < unique_rooms.length; j++){
+                // console.log('divs[i].x', array2d[i])
+                // console.log('unique_rooms[j].coords.x', unique_rooms[j].coords.x)
+                if(array2d[i].x === unique_rooms[j].coords.x){
+                    console.log('IS THIS THING ON?')
+                    if(array2d[i].y === unique_rooms[j].coords.y){
+                        let new_room = <div className='visibleRooms' x={unique_rooms[j].coords.x} y={unique_rooms[j].coords.y}>{unique_rooms[j].title}</div>
+                        // divs.splice(1, 1, 'Jerry')
+                        // divs[i] = new_room
+                        // array2d[i] = new_room
+                        divs[i] = new_room
+                    }
+                }  
+            }
+            
+        }
         
             
-        console.log('THE UNIQUE ROOMS', unique_rooms)
+
         console.log('DIVS', divs)
-        // console.log('NEW ROOMS', new_rooms)
+
         return divs
     }
 
