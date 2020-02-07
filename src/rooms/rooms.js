@@ -4,7 +4,7 @@ import './rooms.scss'
 const Rooms = props => {
     // console.log('from rooms', props.rooms)
     let array2DRooms = []
-    let divs = []
+    let grid = []
     let rooms = [
         { 
             title: "Outside Cave Entrance",
@@ -73,13 +73,6 @@ const Rooms = props => {
         }
     ]
 
-
-    // if(props.rooms !== undefined){
-    //     props.rooms.forEach(room => {
-    //         rooms.push(room)
-    //     })
-    // }
-
     // function that creates our 2d array
     const the2DArray = () => {
         // variable that holds our primary array
@@ -90,9 +83,10 @@ const Rooms = props => {
             for(let j = 0; j <= 9; j++){
                 // we push our sub array created to our primary array var
                 sub_arr.push({x: j, y: i})
-
+                // variable that creates the grid with x and y coordinates
                 let new_room = <div className='invisibleRooms' x={i} y={j}></div>
-                divs.push(new_room)
+                // and we push the div to the grid 
+                grid.push(new_room)
             }
         }
         // we assign our dummy variable to be our primary array
@@ -100,114 +94,79 @@ const Rooms = props => {
     }
     the2DArray()
 
-    // console.log('INITIAL 2D ARRAY', array2DRooms)
-
-
-
-    const roomPlacer = (array2d, rooms) => {
+    // This function is that set's the coordinates of the rooms respectively
+    const coordsSetter = (array2d, rooms) => {
+        // we set the first room in a var
         let first_room = rooms[0]
+        // we grab the position in the grid where we want to set the first room
         let array2d_coords = array2d[54]
+        // here we will hold the new rooms with coordinates assigned to them
         let new_rooms = []
 
+        // we hard code the coordinates of the first room 
         first_room.coords.x = array2d_coords.x
         first_room.coords.y = array2d_coords.y
 
-        // for(let i = 0; i < array2d.length; i++){
-        //     if(array2d[i].x === first_room.coords.x && array2d[i].y === first_room.coords.y){
-                // console.log('array2d[i]', array2d[i])
-                // console.log('rooms[i]', first_room)
-                // console.log('WHAT IS I', i)
-                // let room = <div className='visibleRooms' x={first_room.coords.x} y={first_room.coords.y}>{first_room.title}</div>
-                // divs.push(room)
-        for(let z = 0; z < rooms.length; z++){
+        // double loop to iterate over the rooms and compare them
+        for(let i = 0; i < rooms.length; i++){
             for(let j = 0; j < rooms.length; j++){
-                // the room in the current index north to is equal to any primary key of the other rooms
-                if(rooms[z].n_to === rooms[j].pk){
-                    rooms[j].coords.x = rooms[z].coords.x
-                    rooms[j].coords.y = rooms[z].coords.y - 1
+                // we check if there is a room that has the north set to a primary key of another room
+                if(rooms[i].n_to === rooms[j].pk){
+                    // if it does, we set that room on the north's coordinate to be equal to the current room, substracting 1 from y to place it in the grid above the current room.
+                    rooms[j].coords.x = rooms[i].coords.x
+                    rooms[j].coords.y = rooms[i].coords.y - 1
+                    // we push the room we found to the new rooms variable with it's respective coordinates
                     new_rooms.push(rooms[j])
                 } 
-                // the room in the current index north to is equal to any primary key of the other rooms
-                else if(rooms[z].w_to === rooms[j].pk){
-                    rooms[j].coords.x = rooms[z].coords.x - 1
-                    rooms[j].coords.y = rooms[z].coords.y
+                // we check if there is a room that has the west set to a primary key of another room
+                else if(rooms[i].w_to === rooms[j].pk){
+                    // if it does, we set that room on the west's coordinate to be equal to the current room, substracting 1 from x to place it in the grid to the left of the current room.
+                    rooms[j].coords.x = rooms[i].coords.x - 1
+                    rooms[j].coords.y = rooms[i].coords.y
+                    // we push the room we found to the new rooms variable with it's respective coordinates
                     new_rooms.push(rooms[j])
                 } 
-                else if(rooms[z].s_to === rooms[j].pk){
-                    rooms[j].coords.x = rooms[z].coords.x
-                    rooms[j].coords.y = rooms[z].coords.y + 1
+                // we check if there is a room that has the south set to a primary key of another room
+                else if(rooms[i].s_to === rooms[j].pk){
+                    // if it does, we set that room on the south's coordinate to be equal to the current room, adding 1 to x to place it in the grid at the bottom of the current room.
+                    rooms[j].coords.x = rooms[i].coords.x
+                    rooms[j].coords.y = rooms[i].coords.y + 1
+                    // we push the room we found to the new rooms variable with it's respective coordinates
                     new_rooms.push(rooms[j])
                 } 
-                else if(rooms[z].e_to === rooms[j].pk){
-                    rooms[j].coords.x = rooms[z].coords.x + 1
-                    rooms[j].coords.y = rooms[z].coords.y
+                // we check if there is a room that has the east set to a primary key of another room
+                else if(rooms[i].e_to === rooms[j].pk){
+                    // if it does, we set that room on the west's coordinate to be equal to the current room, adding 1 to y to place it in the grid to the right of the current room.
+                    rooms[j].coords.x = rooms[i].coords.x + 1
+                    rooms[j].coords.y = rooms[i].coords.y
+                    // we push the room we found to the new rooms variable with it's respective coordinates
                     new_rooms.push(rooms[j])
                 } 
             }
         }
-        //     } else {
-        //         let room = <div className='invisibleRooms' x={first_room.coords.x} y={first_room.coords.y}></div>
-        //         // divs.push(room)
-        //     }
-        // }
 
-        console.log('NEW ROOMS', new_rooms)
-
-        // This for loop makes sure there is no repetitive
+        // this variable hold the new rooms with no duplicates
         let unique_rooms = []
+        // This for loop makes sure there is no rooms repetitive in the new rooms
         for(let i = 0; i < new_rooms.length; i++){
             if(unique_rooms.indexOf(new_rooms[i]) === -1){
                 unique_rooms.push(new_rooms[i])
             }
         }
-        console.log('THE UNIQUE ROOMS', unique_rooms)
-
-    
-    
-
-        for(let i = 0; i < divs.length; i++){
+        // this is the second double for loop, and it is to go over the grid and place the rooms in it respectively
+        for(let i = 0; i < grid.length; i++){
             for(let j = 0; j < unique_rooms.length; j++){
-                // console.log('divs[i].x', array2d[i])
-                // console.log('unique_rooms[j].coords.x', unique_rooms[j].coords.x)
-                if(array2d[i].x === unique_rooms[j].coords.x){
-                    console.log('IS THIS THING ON?')
-                    if(array2d[i].y === unique_rooms[j].coords.y){
-                        let new_room = <div className='visibleRooms' x={unique_rooms[j].coords.x} y={unique_rooms[j].coords.y}>{unique_rooms[j].title}</div>
-                        // divs.splice(1, 1, 'Jerry')
-                        // divs[i] = new_room
-                        // array2d[i] = new_room
-                        divs[i] = new_room
-                    }
+                // this checks if the rooms match the coordinates in the grid, if they do, it places the room in the grid
+                if(array2d[i].x === unique_rooms[j].coords.x && array2d[i].y === unique_rooms[j].coords.y){
+                    let new_room = <div className='visibleRooms' x={unique_rooms[j].coords.x} y={unique_rooms[j].coords.y}>{unique_rooms[j].title}</div>
+                    grid[i] = new_room
                 }  
             }
-            
         }
-        
-            
-
-        console.log('DIVS', divs)
-
-        return divs
+        return grid
     }
 
-    console.log('2D ARRAY', array2DRooms)
-    // console.log('TEST ROOMS', rooms)
-    console.log('API ROOMS', props.rooms)
-    
-    return (
-        <>
-            {/* {props.rooms !== undefined ? 
-                props.rooms.map(room => {
-                    return <div className='rooms' id={room.pk}>{room.fields.title}</div>
-                })
-            : null} */}
-            {/* {array2DRooms.map(room => {
-                // console.log('GRID', room)
-                return <div className='invisibleRooms' x={room.x} y={room.y}></div>
-            })} */}
-            {roomPlacer(array2DRooms, rooms)}
-        </>
-    )
+    return  coordsSetter(array2DRooms, rooms)
 }
 
 export default Rooms
