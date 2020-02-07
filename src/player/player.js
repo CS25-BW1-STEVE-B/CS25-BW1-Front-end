@@ -3,7 +3,7 @@ import './player.scss'
 
 const Player = props => {
     
-    // console.log('player props', props)
+    console.log('player props', props)
     // checks the player's current location and, indicates it by changing the rooms background color,
     // as the player moves around
     if(props.rooms !== undefined){
@@ -24,21 +24,15 @@ const Player = props => {
         })
     }
 
-    // if(props.rooms !== undefined){
-    //     props.rooms.forEach(room => {
-    //         let room = document.getElementById(room.pk)
-    //         if(room.field)
-    //     })
-    // }
-
 
     return (
         <div className='player'>
-            {props.props.players !== undefined ?
+            {props.props !== undefined ?
                 <> 
-                    {/* <p className='playerUsername'><p className='playerUserDescription'>Player's username:</p>{props.props.name}</p>
-                    <p className='playerLocation'> <p className='playerLocationDescription'>Player's location:</p>{props.props.location}</p>
-                    <p className='onlinePlayers'><p className='onlinePlayersDescription'>There is</p>{props.props.players.length}<p className='onlinePlayersDescription'>players in this room.</p></p> */}
+                    <p className='playerLocation'>{props.props.location}</p>
+                    <p className='roomDescription'>{props.props.description}</p>
+                    {/* <p className='onlinePlayers'><p className='onlinePlayersDescription'>There is</p>{props.props.players}<p className='onlinePlayersDescription'>players in this room.</p></p>
+                    <p className='playerUsername'><p className='playerUserDescription'>Player's username:</p>{props.props.name}</p> */}
                 </>
             : null}
         </div>

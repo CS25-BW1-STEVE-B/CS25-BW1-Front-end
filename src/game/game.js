@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './game.scss'
 import { axiosWithAuth } from '../authentication/axiosAuth'
-import Player from '../player/player'
 import Directions from '../player/directions'
 import Map from '../map/map'
+import Sidebar from './sidebar'
 
 const MainGame = () => {
     //all the rooms in our game
@@ -14,7 +14,7 @@ const MainGame = () => {
         name: '',
         inventory:[]
     })
-    // console.log('player', player)
+    console.log('player', player)
 
     //This function is what set's the initial location of the player on state
     const currentLocationTracker = () =>{
@@ -57,16 +57,35 @@ const MainGame = () => {
         .get('https://lambda-mud-test.herokuapp.com/api/adv/init/')
         .then(res => {
             // console.log('AXIOS INIT GET', res.data)
-            setPlayer({...player, name: res.data.name, location: res.data.title})
+            setPlayer({...player, name: res.data.name, location: res.data.title, players: res.data.players, description: res.data.description})
         })
         .catch(err => console.log(err.response))
     }, [])
 
     return (
         <div className='gameCanvas'>
-            <Map rooms={rooms} setRooms={setRooms} player={player}/>
-            <Player props={player} rooms={rooms}/>
-            <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
+            <div>
+                <div className='mapArea'>
+                    <Map rooms={rooms} setRooms={setRooms} player={player}/>
+                </div>
+                <div className='bottomDiv'>
+                    <div className='playersContainer'>
+                        <div className='username'>Username: {player.name}</div>
+                        <div className='playersTitle'>Player's in current room</div>
+                        <div className='listOfPlayers'>
+                            {player.players !== undefined ? 
+                                player.players.map(player => {
+                                return <div className='players'>{player}</div>
+                                })
+                            : null}
+                        </div>
+                    </div>
+                    <Directions rooms={rooms} player={player} setPlayer={setPlayer}/>
+                </div>
+            </div>
+            <div className='sidebarArea'>
+            <Sidebar props={player} rooms={rooms}/>
+            </div>
         </div>
     )
 }

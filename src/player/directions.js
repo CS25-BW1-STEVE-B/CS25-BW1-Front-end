@@ -15,8 +15,8 @@ const Directions = props => {
             axiosWithAuth()
             .post('https://lambda-mud-test.herokuapp.com/api/adv/move', directions)
             .then(res => {
-                // console.log('from axios post request', res)
-                props.setPlayer({...props.player, location: res.data.title, ...res.data})
+                console.log('from axios post request', res)
+                props.setPlayer({...props.player, location: res.data.title, description: res.data.description, ...res.data})
             })
             .catch(err => console.log(err.response))
         }, [directions])
